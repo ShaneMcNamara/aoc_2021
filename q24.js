@@ -56,15 +56,19 @@ const getKey = ({ x,y,z,w } = {}) => `${x},${y},${z},${w}`;
 
 
 const main = (highest) => {
-  const N = 3;
+  //const { vars: initial1 } = compute({ input: 9, initialVals: { x: 0, y: 0, z: 0, w: 0 } });
+  //const { vars: initial2 } = compute({ input: 9, initialVals: initial1, depth: 1 });
+ //const nodes = [[1,'99', initial2]];
+  const N = 9;
   const nodes = new Array(N).fill().map((_,i) => {
-    const val = highest ? 9 - N + i + 1 : i + 1;   // This should actually be N - i, but we got lucky and the lowest starts with 3.
+    const val = highest ? 9 - N + i + 1 : N - i;   // This should actually be N - i, but we got lucky and the lowest starts with 3.
     return [0,`${val}`, compute({ input: val }).vars];
   }); // depth, num, data
   const v = new Array(grid.length).fill().map(() => ({ }));
   let maxVal = Number.MIN_SAFE_INTEGER;
   while(nodes.length > 0) {
     const [depth,num, data] = nodes.pop();
+    if(data.z > 10 ** 7) continue;
     const numInt = parseInt(num, 10);
     if(depth === grid.length - 1) {
       if(data.z === 0) return numInt;
