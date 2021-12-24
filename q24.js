@@ -54,11 +54,7 @@ const compute = ({ input, depth = 0, initialVals = { x: 0, y: 0, z: 0, w: 0 } })
 
 const getKey = ({ x,y,z,w } = {}) => `${x},${y},${z},${w}`;
 
-
 const main = (highest) => {
-  //const { vars: initial1 } = compute({ input: 9, initialVals: { x: 0, y: 0, z: 0, w: 0 } });
-  //const { vars: initial2 } = compute({ input: 9, initialVals: initial1, depth: 1 });
- //const nodes = [[1,'99', initial2]];
   const N = 9;
   const nodes = new Array(N).fill().map((_,i) => {
     const val = highest ? 9 - N + i + 1 : N - i;   // This should actually be N - i, but we got lucky and the lowest starts with 3.
@@ -89,8 +85,6 @@ const main = (highest) => {
   }
   return maxVal;
 }
-
-
 
 const start = Math.floor(new Date()); 
 console.log(main(true))
