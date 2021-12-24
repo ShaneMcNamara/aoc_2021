@@ -57,7 +57,7 @@ const getKey = ({ x,y,z,w } = {}) => `${x},${y},${z},${w}`;
 const main = (highest) => {
   const N = 9;
   const nodes = new Array(N).fill().map((_,i) => {
-    const val = highest ? 9 - N + i + 1 : N - i;   // This should actually be N - i, but we got lucky and the lowest starts with 3.
+    const val = highest ? 9 - N + i + 1 : N - i;
     return [0,`${val}`, compute({ input: val }).vars];
   }); // depth, num, data
   const v = new Array(grid.length).fill().map(() => ({ }));
